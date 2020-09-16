@@ -1,0 +1,10 @@
+language: generic
+sudo: require
+services:
+  - docker
+
+before_install:
+  - docker build -t agrberg/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true agrberg/docker-react npm run test -- --coverage
